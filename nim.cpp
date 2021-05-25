@@ -52,6 +52,8 @@ int main(){
 
         print_game_state(matches);
         matches_to_remove = run_turn(player_turn, matches);
+
+        matches -= matches_to_remove;
     }
 
     std::cout << "That was fun! Thank you for playing" << std::endl;
