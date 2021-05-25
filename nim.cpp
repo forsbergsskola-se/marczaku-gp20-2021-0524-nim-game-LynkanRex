@@ -14,7 +14,7 @@ int print_game_state(int matches_left){
 }
 
 int run_turn(int player_number, int matches_left){
-    std::cout << "It's player " << player_number << "'s turn now!" << std::endl;
+    std::cout << "It's player " << player_number+1 << "'s turn now!" << std::endl;
 
     std::cout << "Please enter a number between 1 and 3" << std::endl;
 
