@@ -57,5 +57,8 @@ int main(){
     }
 
     std::cout << "That was fun! Thank you for playing" << std::endl;
+    std::cout << "Enter any character and press RETURN to quit" << std::endl;
+    char choice;
+    std::cin >> choice;
     return 0;
 }
