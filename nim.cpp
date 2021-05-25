@@ -5,7 +5,6 @@ int player_turn = 0;
 int matches = 24;
 
 int print_game_state(int matches_left){
-    std::cout << "Here's how many matches are left;" << std::endl;
     for (int i = 0; i < matches_left; ++i) {
         std::cout << "|";
     }
@@ -36,7 +35,7 @@ int run_turn(int player_number, int matches_left){
     }
 
     player_turn = !player_turn;
-    
+
     return choice;
 }
 
