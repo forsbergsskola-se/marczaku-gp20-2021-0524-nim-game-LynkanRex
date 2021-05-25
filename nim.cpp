@@ -1,4 +1,6 @@
 #include <iostream>
+#include <sstream>
+using namespace std;
 
 int game_running = 1;
 int player_turn = 0;
@@ -6,38 +8,60 @@ int matches = 24;
 
 int print_game_state(int matches_left){
     for (int i = 0; i < matches_left; ++i) {
-        std::cout << "|";
+        cout << "|";
     }
-    std::cout << std::endl;
-    std::cout << "There's currently " << matches << " matches left." << std::endl;
+    cout << std::endl;
+    cout << "There's currently " << matches << " matches left." << endl;
+    return 0;
+}
+
+int validate_input(string input){
+
+    cout << "Input is: " << input << endl;
+
+    if(input == "1" || input == "2" || input == "3"){
+        return 1;
+    }
+
     return 0;
 }
 
 int run_turn(int player_number, int matches_left){
+    string choice_string = "";
     int choice = 0;
+
 
     if(!player_number){
         std::cout << "It's your turn now!" << std::endl;
-        std::cout << "Please enter a number between 1 and 3" << std::endl;
 
-        int valid_choice = 0;
+        int player_entry = 0;
 
-        std::cin >> choice;
+        while(!player_entry){
+            cout << "Please enter a number between 1 and 3" << endl;
+            cin >> choice;
 
-        while(!valid_choice){
-            if(std::cin.fail())
-                std::cout << "Incorrect entry, please enter a number" << std::endl;
+            stringstream ss;
+            ss<<choice;
+            string s;
+            ss>>s;
 
-            if(choice >= 0 || choice <= 3){
-                if(choice > matches)
-                    std::cout << "You cannot take more matches than what are left" << std::endl;
-                break;
+            int given_choice = validate_input(s);
+
+            if(given_choice)
+            {
+                if(choice >= 1 && choice <= 3){
+                    if(choice > matches)
+                        cout << "You cannot take more matches than what are left" << endl;
+                    player_entry = 1;
+                }
             }
-
+            else{
+                cout << "Incorrect entry, please enter a number" << endl;
+            }
         }
     }
     else{
-        std::cout << "It's the AI's turn now" << std::endl;
+        cout << "It's the AI's turn now" << endl;
 
         if(matches_left <= 1){
             choice = 1;
@@ -52,7 +76,7 @@ int run_turn(int player_number, int matches_left){
             choice = rand() % 2+1;
         }
 
-        std::cout << "The AI picked " << choice << " match(es)!" << std::endl;
+        cout << "The AI picked " << choice << " match(es)!" << endl;
     }
 
     player_turn = !player_turn;
@@ -61,17 +85,17 @@ int run_turn(int player_number, int matches_left){
 
 int decide_who_won(){
     if(!player_turn)
-        std::cout << "You won!" << std::endl;
+        cout << "You won!" << endl;
     else
-        std::cout << "You lost!" << std::endl;
+        cout << "You lost!" << endl;
 
     return 0;
 }
 
 int main(){
 
-    std::cout << "Welcome to Nim! The aim of the game is to pick between 1-3 matchsticks" << std::endl;
-    std::cout << "you lose by picking the last one." << std::endl;
+    cout << "Welcome to Nim! The aim of the game is to pick between 1-3 matchsticks" << endl;
+    cout << "you lose by picking the last one." << endl;
 
     while(game_running){
         if(matches <= 0)
@@ -86,9 +110,9 @@ int main(){
 
     decide_who_won();
 
-    std::cout << "That was fun! Thank you for playing" << std::endl;
-    std::cout << "Enter any character and press RETURN to quit" << std::endl;
+    cout << "That was fun! Thank you for playing" << endl;
+    cout << "Enter any character and press RETURN to quit" << endl;
     char choice;
-    std::cin >> choice;
+    cin >> choice;
     return 0;
 }
