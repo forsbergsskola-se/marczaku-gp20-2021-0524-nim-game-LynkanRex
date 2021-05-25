@@ -14,29 +14,58 @@ int print_game_state(int matches_left){
 }
 
 int run_turn(int player_number, int matches_left){
-    std::cout << "It's player " << player_number+1 << "'s turn now!" << std::endl;
-
-    std::cout << "Please enter a number between 1 and 3" << std::endl;
-
-    int valid_choice = 0;
     int choice = 0;
-    std::cin >> choice;
 
-    while(!valid_choice){
-        if(std::cin.fail())
-            std::cout << "Incorrect entry, please enter a number" << std::endl;
+    if(!player_number){
+        std::cout << "It's your turn now!" << std::endl;
+        std::cout << "Please enter a number between 1 and 3" << std::endl;
 
-        if(choice >= 0 || choice <= 3){
-            if(choice > matches)
-                std::cout << "You cannot take more matches than what are left" << std::endl;
-            break;
+        int valid_choice = 0;
+
+        std::cin >> choice;
+
+        while(!valid_choice){
+            if(std::cin.fail())
+                std::cout << "Incorrect entry, please enter a number" << std::endl;
+
+            if(choice >= 0 || choice <= 3){
+                if(choice > matches)
+                    std::cout << "You cannot take more matches than what are left" << std::endl;
+                break;
+            }
+
+        }
+    }
+    else{
+        std::cout << "It's the AI's turn now" << std::endl;
+
+        if(matches_left <= 1){
+            choice = 1;
+        }
+        else if(matches_left == 2){
+            choice = 1;
+        }
+        else if(matches_left == 3){
+            choice = 2;
+        }
+        else{
+            choice = rand() % 2+1;
         }
 
+        std::cout << "The AI picked " << choice << " match(es)!" << std::endl;
     }
 
     player_turn = !player_turn;
-
     return choice;
+}
+
+int decide_who_won(){
+    if(!player_turn)
+        std::cout << "You won!" << std::endl;
+    else
+        std::cout << "You lost!" << std::endl;
+
+    return 0;
 }
 
 int main(){
@@ -54,6 +83,8 @@ int main(){
 
         matches -= matches_to_remove;
     }
+
+    decide_who_won();
 
     std::cout << "That was fun! Thank you for playing" << std::endl;
     std::cout << "Enter any character and press RETURN to quit" << std::endl;
