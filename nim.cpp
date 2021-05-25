@@ -9,7 +9,8 @@ int print_game_state(int matches_left){
     for (int i = 0; i < matches_left; ++i) {
         std::cout << "|";
     }
-
+    std::cout << std::endl;
+    std::cout << "There's currently " << matches << " matches left." << std::endl;
     return 0;
 }
 
@@ -34,9 +35,8 @@ int run_turn(int player_number, int matches_left){
 
     }
 
-    if(!player_turn) {
-        player_turn = !player_turn;
-    }
+    player_turn = !player_turn;
+    
     return choice;
 }
 
