@@ -45,9 +45,7 @@ int run_turn(int player_number, int matches_left){
             string s;
             ss>>s;
 
-            int given_choice = validate_input(s);
-
-            if(given_choice)
+            if(validate_input(s))
             {
                 if(choice >= 1 && choice <= 3){
                     if(choice > matches)
