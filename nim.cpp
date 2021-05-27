@@ -90,7 +90,7 @@ int decide_who_won(){
     return 0;
 }
 
-int main(){
+int mainn(){
 
     cout << "Welcome to Nim! The aim of the game is to pick between 1-3 matchsticks" << endl;
     cout << "you lose by picking the last one." << endl;
