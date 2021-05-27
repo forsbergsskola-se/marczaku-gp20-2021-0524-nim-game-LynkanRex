@@ -99,6 +99,8 @@ void do_loop(){
 int main(){
     loop_active = 1;
 
+    cout << "Decimal- to Binary-number converter" << endl;
+
     while(loop_active){
         do_loop();
     }
