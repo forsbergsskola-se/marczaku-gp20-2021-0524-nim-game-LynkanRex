@@ -4,4 +4,4 @@ project(nimgame)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(nimgame
-        nim.cpp)
+        nim.cpp binaryconverter.cpp binaryconverter.h)
