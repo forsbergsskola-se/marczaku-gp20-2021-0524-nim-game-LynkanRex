@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool loop_active = 1;
+bool loop_active;
 
 void convertNumber(string input){
     int num;
@@ -83,21 +83,26 @@ void do_loop(){
 
             cin >> choice;
 
-            if(verify_inputExit)
-                loop_active = false;
+            if(verify_inputExit(choice)){
+                loop_active = 0;
+                return;
+            }
 
             if(verify_inputIsDigit(choice))
                 if(verify_inputIsPositive(choice))
-                    if(verify_inputIsNotTooBig(choice)){
-                        convertNumber(choice);
-                    }
+                   if(verify_inputIsNotTooBig(choice)){
+                       convertNumber(choice);
+                   }
 }
 
 
 int main(){
-    while(true){
-        if(!loop_active)
-            break;
+    loop_active = 1;
+
+    while(loop_active){
         do_loop();
     }
+
+    cout << "Exiting..." << endl;
+    return 0;
 }
