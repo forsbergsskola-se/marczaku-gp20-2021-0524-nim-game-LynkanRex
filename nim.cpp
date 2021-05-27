@@ -10,7 +10,7 @@ int print_game_state(int matches_left){
     for (int i = 0; i < matches_left; ++i) {
         cout << "|";
     }
-    cout << std::endl;
+    cout << endl;
     cout << "There's currently " << matches << " matches left." << endl;
     return 0;
 }
