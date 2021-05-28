@@ -118,24 +118,158 @@ bool CheckWinState(array<char,9> currentArray, bool playerTurn){
     return 0;
 }
 
+bool ComputerCheckCell(array<char,9> currentArray, int index){
+    if(currentArray[index] == 'o')
+        return false;
+    return true;
+}
+
+int ComputerCheckDiagonals(array<char,9> currentArray){
+    char symbol = 'x';
+
+    if(currentArray[0] == symbol && currentArray[4] == symbol)
+    {
+        if(ComputerCheckCell(currentArray, 8))
+            return 8;
+    }
+    else if(currentArray[4] == symbol && currentArray[8] == symbol)
+    {
+        if(ComputerCheckCell(currentArray, 0))
+            return 0;
+    }
+    else if(currentArray[8] == symbol && currentArray[0] == symbol){
+        if(ComputerCheckCell(currentArray, 4))
+            return 4;
+    }
+    else if(currentArray[2] == symbol && currentArray[4] == symbol){
+        if(ComputerCheckCell(currentArray, 6))
+            return 6;
+    }
+    else if(currentArray[6] == symbol && currentArray[4] == symbol){
+        if(ComputerCheckCell(currentArray, 2))
+            return 2;
+    }
+    else if(currentArray[2] == symbol && currentArray[6] == symbol){
+        if(ComputerCheckCell(currentArray, 4))
+            return 4;
+    }
+
+    return 0;
+}
+
+int ComputerCheckRows(array<char,9> currentArray){
+    char symbol = 'x';
+
+    if(currentArray[0] == symbol && currentArray[1] == 'x')
+    {
+        if(ComputerCheckCell(currentArray, 2))
+            return 2;
+    }
+    else if(currentArray[1] == symbol && currentArray[2] == 'x'){
+        if(ComputerCheckCell(currentArray, 0))
+            return 0;
+    }
+    else if(currentArray[0] == symbol && currentArray[2] == 'x')
+    {
+        if(ComputerCheckCell(currentArray, 1))
+            return 1;
+    }
+    else if(currentArray[3] == symbol && currentArray[4] == symbol){
+        if(ComputerCheckCell(currentArray, 5))
+            return 5;
+    }
+    else if(currentArray[4] == symbol && currentArray[5] == symbol){
+        if(ComputerCheckCell(currentArray, 3))
+            return 3;
+    }
+    else if(currentArray[3] == symbol && currentArray[5] == symbol){
+        if(ComputerCheckCell(currentArray, 4))
+            return 4;
+    }
+    else if(currentArray[6] == symbol && currentArray[7] == symbol){
+        if(ComputerCheckCell(currentArray, 8))
+            return 8;
+    }
+    else if(currentArray[7] == symbol && currentArray[8] == symbol){
+        if(ComputerCheckCell(currentArray, 6))
+            return 6;
+    }
+    else if(currentArray[6] == symbol && currentArray[8] == symbol){
+        if(ComputerCheckCell(currentArray, 7))
+            return 7;
+    }
+
+    return 0;
+}
+
+int ComputerCheckColumns(array<char,9> currentArray){
+    char symbol = 'x';
+
+    if(currentArray[0] == symbol && currentArray[3] == symbol)
+    {
+        if(ComputerCheckCell(currentArray, 6))
+            return 6;
+    }
+    else if(currentArray[3] == symbol && currentArray[6] == symbol){
+        if(ComputerCheckCell(currentArray, 0))
+            return 0;
+    }
+    else if(currentArray[0] == symbol && currentArray[6] == symbol){
+        if(ComputerCheckCell(currentArray, 3))
+            return 3;
+    }
+    else if(currentArray[1] == symbol && currentArray[4] == symbol){
+        if(ComputerCheckCell(currentArray, 7))
+            return 7;
+    }
+    else if(currentArray[4] == symbol && currentArray[7] == symbol){
+        if(ComputerCheckCell(currentArray, 1))
+            return 1;
+    }
+    else if(currentArray[1] == symbol && currentArray[7] == symbol){
+        if(ComputerCheckCell(currentArray, 4))
+            return 4;
+    }
+    else if(currentArray[2] == symbol && currentArray[5] == symbol){
+        if(ComputerCheckCell(currentArray, 8))
+            return 8;
+    }
+    else if(currentArray[5] == symbol && currentArray[8] == symbol){
+        if(ComputerCheckCell(currentArray, 2))
+            return 2;
+    }
+    else if(currentArray[2] == symbol && currentArray[8] == symbol){
+        if(ComputerCheckCell(currentArray, 5))
+            return 5;
+    }
+
+    return 0;
+}
+
 array<char,9> ComputerDoMove(array<char,9> currentArray){
+    int target = 0;
 
-    // AI Stuff:
-    // Could check column state of the array and look for for when 2 X's are nearby,
-    // and feed an int back to the choice
-    // Same with Row
-    // Same with Diagonals..
-
+    if(ComputerCheckDiagonals(currentArray))
+        target = ComputerCheckDiagonals(currentArray);
+    else if(ComputerCheckRows(currentArray))
+        target = ComputerCheckRows(currentArray);
+    else if(ComputerCheckColumns(currentArray)){
+        target = ComputerCheckColumns(currentArray);
+    }
 
     cout << "Computer's turn..." << endl;
-
-    for (int i = 0; i < 9; ++i) {
-        if(currentArray[i] == ' '){
-            currentArray[i] = 'o';
-            break;
-        }
-        else{
-            continue;
+    if(target != 0){
+        currentArray[target] = 'o';
+    }
+    else{
+        for (int i = 0; i < 9; ++i) {
+            if(currentArray[i] == ' '){
+                currentArray[i] = 'o';
+                break;
+            }
+            else{
+                continue;
+            }
         }
     }
 
