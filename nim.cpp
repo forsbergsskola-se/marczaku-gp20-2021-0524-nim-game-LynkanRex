@@ -1,5 +1,7 @@
 #include <iostream>
 #include <sstream>
+#include "nim.h"
+
 using namespace std;
 
 int game_running = 1;
@@ -90,7 +92,7 @@ int decide_who_won(){
     return 0;
 }
 
-int mainn(){
+int nimGame(){
 
     cout << "Welcome to Nim! The aim of the game is to pick between 1-3 matchsticks" << endl;
     cout << "you lose by picking the last one." << endl;

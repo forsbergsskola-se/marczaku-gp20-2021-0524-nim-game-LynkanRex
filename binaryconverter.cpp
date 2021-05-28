@@ -1,6 +1,8 @@
 #include <iostream>
 #include <sstream>
 
+#include "binaryconverter.h"
+
 using namespace std;
 
 bool loop_active;
@@ -96,7 +98,7 @@ void do_loop(){
 }
 
 
-int main(){
+int binaryConverter(){
     loop_active = 1;
 
     cout << "Decimal- to Binary-number converter" << endl;

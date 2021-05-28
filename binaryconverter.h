@@ -10,5 +10,6 @@ class binaryconverter {
 
 };
 
+int binaryConverter();
 
 #endif //NIMGAME_BINARYCONVERTER_H
