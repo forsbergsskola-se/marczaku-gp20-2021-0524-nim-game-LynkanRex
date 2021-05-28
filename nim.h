@@ -7,4 +7,4 @@
 
 #endif //NIMGAME_NIM_H
 
-int nimGame();
+void nimGame();

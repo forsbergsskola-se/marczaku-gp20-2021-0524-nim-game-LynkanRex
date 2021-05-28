@@ -7,6 +7,7 @@
 
 #include "binaryconverter.h"
 #include "nim.h"
+#include "tictactoe.h"
 
 using namespace std;
 
@@ -26,13 +27,13 @@ int main(){
             nimGame();
         }
         if(choice == 2){
-
+            ticTacToe();
         }
         if(choice == 3){
             binaryConverter();
         }
         else{
-            break;
+            programRunning = 0;
         }
     }
 

@@ -92,7 +92,7 @@ int decide_who_won(){
     return 0;
 }
 
-int nimGame(){
+void nimGame(){
 
     cout << "Welcome to Nim! The aim of the game is to pick between 1-3 matchsticks" << endl;
     cout << "you lose by picking the last one." << endl;
@@ -114,5 +114,4 @@ int nimGame(){
     cout << "Enter any character and press RETURN to quit" << endl;
     char choice;
     cin >> choice;
-    return 0;
 }

@@ -98,7 +98,7 @@ void do_loop(){
 }
 
 
-int binaryConverter(){
+void binaryConverter(){
     loop_active = 1;
 
     cout << "Decimal- to Binary-number converter" << endl;
@@ -108,5 +108,4 @@ int binaryConverter(){
     }
 
     cout << "Exiting..." << endl;
-    return 0;
 }
